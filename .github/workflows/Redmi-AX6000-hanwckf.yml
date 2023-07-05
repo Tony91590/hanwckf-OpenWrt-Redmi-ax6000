@@ -32,9 +32,8 @@ env:
   SSH_ACTIONS: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
+  UPLOAD_PACKAGES: true
   TZ: Europe/Paris
-  ###############Name##############
-  OPENWRT_NAME: hanwckf
 
 jobs:
   build:
