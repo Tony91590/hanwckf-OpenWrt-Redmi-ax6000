@@ -16,4 +16,4 @@ sed -i 's,mirrors.vsean.net/openwrt,downloads.openwrt.org,g' package/emortal/def
 sed -i 's/CST-8/auto/g' package/emortal/default-settings/files/99-default-settings-chinese
 sed -i 's,Asia/Shanghai,auto,g' package/emortal/default-settings/files/99-default-settings-chinese
 sed -i 's/ImmortalWrt/OpenWrt/g' include/version.mk
-cp $GITHUB_WORKSPACE/data/etc/banner package/base-files/files/etc/
+cp $GITHUB_WORKSPACEhanwckf/Redmi-AX6000/data/etc/banner package/base-files/files/etc/
