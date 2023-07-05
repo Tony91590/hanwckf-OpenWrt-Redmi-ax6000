@@ -1,0 +1,32 @@
+cat /proc/cmdline
+
+console=ttyS0,115200n1 loglevel=8 firmware=1 uart_en=1
+
+firmware=1
+
+nvram set boot_wait=on
+nvram set uart_en=1
+nvram set flag_boot_rootfs=0
+nvram set flag_last_success=0
+nvram set flag_boot_success=1
+nvram set flag_try_sys1_failed=0
+nvram set flag_try_sys2_failed=0
+nvram commit
+ubiformat /dev/mtd8 -y -f /tmp/swrt-rm-ax6000.ubi
+
+firmware=0
+
+nvram set boot_wait=on
+nvram set uart_en=1
+nvram set flag_boot_rootfs=1
+nvram set flag_last_success=1
+nvram set flag_boot_success=1
+nvram set flag_try_sys1_failed=0
+nvram set flag_try_sys2_failed=0
+nvram commit
+ubiformat /dev/mtd9 -y -f /tmp/swrt-rm-ax6000.ubi
+
+192.168.1.1
+
+192.168.50.1
+
