@@ -1,5 +1,5 @@
-partition de sauvegarde
-Partition d'affichage du routeur de connexion SSH :
+backup partition
+SSH login router display partition:
 
 cat /proc/mtd
 
@@ -30,51 +30,52 @@ cat /proc/partitions
   31       10      51200 mtdblock10
 253        0      15748 ubiblock0_1
 
-Vous pouvez voir que les partitions originales du micrologiciel d'ubi et d'ubi1 font 30 Mo.
+You can see that the original firmware partitions of ubi and ubi1 are 30MB.
 
-Vérifiez dans quelle partition se trouve le FIP, certains sont dans la partition 4, certains sont dans la partition 5 ; vous devez être optimiste quant à votre propre
+Check which partition the FIP is in, some are in partition 4, some are in partition 5; you need to be optimistic about your own
 
-Sauvegardez les partitions FIP et Factory :
-utilisez la commande dd pour sauvegarder dans le dossier tmp :
+Back up the FIP and Factory partitions:
+use the dd command to save to the tmp folder:
 
 dd if=/dev/mtd4 of=/tmp/mtd4_Factory.bin
 dd if=/dev/mtd5 of=/tmp/mtd5_FIP.bin
-Téléchargez la sauvegarde sur votre ordinateur et enregistrez-la.
+Download the backup to your computer and save it.
 
-brosse uboot
-Utilisez le logiciel winscp pour télécharger mt7986_redmi_ax6000-fip-fixed-parts.bin dans le répertoire tmp du routeur
+uboot brush
+Use winscp software to download mt7986_redmi_ax6000-fip-fixed-parts.bin to router tmp directory
 
 mtd write /tmp/mt7986_redmi_ax6000-fip-fixed-parts.bin FIP
-Après avoir entré la commande et appuyé sur Entrée, cela ressemble à ceci :
+After entering the command and pressing Enter, it looks like this:
 
 root@XiaoQiang:~# mtd write /tmp/mt7986_redmi_ax6000-fip-fixed-parts.bin FIP
 Unlocking FIP ...
 
-Writing from /tmp/mt7986_redmi_ax6000-fip-fixed-parts.bin to FIP ...    
+Writing from /tmp/mt7986_redmi_ax6000-fip-fixed-parts.bin to FIP ...
 
-Attendez 10 secondes pour débrancher directement l'alimentation ; l'adresse ipv4 de la carte Ethernet de l'ordinateur est fixée à 192.168.31.X (X est un nombre compris entre 2 et 254)
+Wait 10 seconds to unplug the power directly; the ipv4 address of the computer's ethernet card is fixed at 192.168.31.X (X is a number between 2 and 254)
 
-À l'état hors tension ; maintenez le trou de réinitialisation et branchez l'alimentation, observez la carte Ethernet, et vous pouvez lâcher prise dans environ 15 secondes. Actuellement, la première version de Undead Boot n'a pas de voyant lumineux
+In de-energized state; hold the reset hole and plug in the power, observe the ethernet board, and you can let go in about 15 seconds. Currently, the first version of Undead Boot does not have an indicator light
 
-Après avoir confirmé que le clignotement est terminé, débranchez l'alimentation du routeur. Définissez ensuite l'adresse IP de l'ordinateur sur un 192.168.31.2 fixe, puis maintenez enfoncé le bouton RESET du routeur et allumez l'alimentation, attendez 15 secondes, puis relâchez le RESET (car Uboot ne prend pas encore en charge le voyant LED , de sorte que le voyant ne sera pas allumé), utilisez Chrome Entrez 192.168.31.1 dans le navigateur, vous verrez la page Web et sélectionnez le micrologiciel de grande partition à flasher sur la page de récupération uboot.
+After confirming flashing is complete, unplug the power from the router. Then set the IP address of the computer to a fixed 192.168.31.2, then press and hold the RESET button on the router and turn on the power, wait 15 seconds, then release the RESET (because Uboot does not support the LED yet LED , so the light will not be on), use Chrome Enter 192.168.31.1 in the browser, you will see the webpage and select the large partition firmware to flash on the uboot recovery page.
 
-Retour au firmware d'origine
-Entrez pour afficher la partition, connectez-vous à SSH pour exécuter
+Return to original firmware
+Enter to view partition, log in to SSH to run
 
 cat /proc/mtd
-Afficher l'emplacement FIP
+View FIP Location
 
-Téléchargez le fichier de partition FIP de sauvegarde dans le répertoire tmp
+Download the backup FIP partition file to the tmp directory
 
-Connectez-vous en SSH pour exécuter
+Login in SSH to run
 
 mtd write /tmp/mtd5_FIP.bin /dev/mtd5
-或者
+or
 mtd write /tmp/mtd5_FIP.bin FIP
-mtd5 est modifié en fonction de la situation réelle
 
-Débranchez l'alimentation, puis utilisez l'outil de sauvetage de briques officiel de Xiaomi.
+mtd5 is modified according to the actual situation
 
-Outil de réparation officiel du routeur Mi
+Disconnect the power, then use Xiaomi's official brick rescue tool.
+
+Official Mi Router Repair Tool
 MIWIFIRepairTool.x86.zip
-Micrologiciel officiel Redmi AX6000 RB06
+Official Redmi AX6000 RB06 Firmware
