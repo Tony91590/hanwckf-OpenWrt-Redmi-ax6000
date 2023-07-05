@@ -116,32 +116,37 @@ jobs:
     - name: View disk usage
       if: (!cancelled())
       run: df -hT
+    
+    - name: Upload packages
+      uses: actions/upload-artifact@main
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_PACKAGES == 'true'
+      with:
+        name: OpenWrt_packages-${{ env.FILE_DATE }}
+        path: openwrt/bin/packages/
 
-    - name: Organize files and rename
+    - name: Organize files
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: | 
         cd openwrt/bin/targets/*/*
         rm -rf packages
-        sudo -E apt-get -qq install rename
-        rename 's/.*${{ env.TARGET_NAME }}/${{ env.FILE_DATE }}-${{ env.OPENWRT_NAME }}/' *
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
-      
+    
     - name: Upload firmware to github
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: ${{ env.FILE_DATE }}-${{ env.OPENWRT_NAME }}-${{ env.DEVICE_NAME }}
+        name: OpenWrt_firmware-${{ env.DEVICE_NAME }}-${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
     - name: Generate release tags
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "release_tag=${{ env.FILE_DATE }}-${{ env.OPENWRT_NAME }}-${{ env.DEVICE_NAME }}" >> $GITHUB_OUTPUT
+        echo "release_tag=$(date +"%Y.%m.%d-%H%M")-Redmi-AX6000-lean">> $GITHUB_OUTPUT
         touch release.txt
-        echo "Sincere thanks to all the big guys who have selflessly dedicated to openwrt" >> release.txt
+        echo "The default IP address is 192.168.31.1" >> release.txt
         echo "📥 Firmware download" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
         
@@ -151,10 +156,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        files: ${{ env.FIRMWARE }}/*
-        name: ${{ env.FILE_DATE }}-${{ env.OPENWRT_NAME }}-${{ env.DEVICE_NAME }}
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
-
-
-
+        files: ${{ env.FIRMWARE }}/*
