@@ -21,4 +21,5 @@ sed -i 's,https://github.com/immortalwrt/immortalwrt/issues,https://bugs.openwrt
 sed -i 's,https://github.com/immortalwrt/immortalwrt/discussions,https://forum.openwrt.org/,g' include/version.mk
 cp $GITHUB_WORKSPACE/hanwckf/Redmi-AX6000/data/opkg/distfeeds.conf package/base-files/files/etc/
 cp $GITHUB_WORKSPACE/hanwckf/Redmi-AX6000/data/uci-defaults/090-distfeeds.conf package/base-files/files/etc/uci-defaults/
+chmod 0755 package/base-files/files/etc/uci-defaults/090-distfeeds.conf
 cp $GITHUB_WORKSPACE/hanwckf/Redmi-AX6000/data/etc/banner package/base-files/files/etc/
