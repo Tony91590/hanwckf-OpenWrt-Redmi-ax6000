@@ -9,7 +9,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 ###############Name##############
-name: Redmi-AX6000-hanwckf
+name: Redmi-AX6000-build
 
 on:
   repository_dispatch:
@@ -19,8 +19,8 @@ on:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
-#  schedule:
-#    - cron: 0 16 * * *
+  schedule:
+    - cron: 0 16 * * *
 
 env:
   REPO_URL: https://github.com/hanwckf/immortalwrt-mt798x
