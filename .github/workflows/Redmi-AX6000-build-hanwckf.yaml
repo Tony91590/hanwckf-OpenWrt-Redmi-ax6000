@@ -9,7 +9,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 ###############Name##############
-name: Redmi-AX6000-build
+name: Redmi-AX6000-build-hanwckf
 
 on:
   repository_dispatch:
