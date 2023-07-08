@@ -21,14 +21,4 @@ sed -i 's,https://immortalwrt.org/,https://openwrt.org/,g' include/version.mk
 sed -i 's,https://github.com/immortalwrt/immortalwrt/issues,https://bugs.openwrt.org/,g' include/version.mk
 sed -i 's,https://github.com/immortalwrt/immortalwrt/discussions,https://forum.openwrt.org/,g' include/version.mk
 sed -i 's,https://downloads.immortalwrt.org/releases/21.02-SNAPSHOT,https://downloads.openwrt.org/releases/21.02-SNAPSHOT,g' include/version.mk
-
-cat > package/base-files/files/etc/banner << EOF
- _______                     ________        __
-|       |.-----.-----.-----.|  |  |  |.----.|  |_
-|   -   ||  _  |  -__|     ||  |  |  ||   _||   _|
-|_______||   __|_____|__|__||________||__|  |____|
-         |__| W I R E L E S S   F R E E D O M
------------------------------------------------------
- %D %V, %C
------------------------------------------------------
-EOF
+cp $GITHUB_WORKSPACE/hanwckf/Redmi-AX6000/banner package/base-files/files/etc/
