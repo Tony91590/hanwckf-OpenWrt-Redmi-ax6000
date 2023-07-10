@@ -14,11 +14,6 @@ name: Redmi-AX6000-build-hanwckf
 on:
   repository_dispatch:
   workflow_dispatch:
-    inputs:
-      ssh:
-        description: 'SSH connection to Actions'
-        required: false
-        default: 'false'
   schedule:
     - cron: 0 16 * * *
 
@@ -29,7 +24,6 @@ env:
   CONFIG_FILE: hanwckf/Redmi-AX6000/.config
   DIY_P1_SH: hanwckf/Redmi-AX6000/diy-part1.sh
   DIY_P2_SH: hanwckf/Redmi-AX6000/diy-part2.sh
-  SSH_ACTIONS: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
   UPLOAD_PACKAGES: true
@@ -83,13 +77,6 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
         
-    - name: SSH connection management
-      uses: P3TERX/ssh2actions@v1.0.0
-      if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
-      env:
-        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-
     - name: Download the installation package
       id: package
       run: |
