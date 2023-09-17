@@ -178,7 +178,7 @@
 			reg = <1>;
 			label = "rgb:network";
 			color-index = <LED_COLOR_ID_RED LED_COLOR_ID_GREEN LED_COLOR_ID_BLUE>;
-			color-intensity = <0 0 255>; /* BLUE */
+			color-intensity = <0 255 0>; /* GREEN */
 		};
 	};
 };
