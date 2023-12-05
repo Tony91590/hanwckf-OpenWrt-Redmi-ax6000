@@ -114,7 +114,7 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_PACKAGES == 'true'
       with:
-        name: OpenWrt_packages-${{ env.FILE_DATE }}
+        name: OpenWrt_packages-glinet_gl-mt6000
         path: openwrt/bin/packages/
 
     - name: Organize files
