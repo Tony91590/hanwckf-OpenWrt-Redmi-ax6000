@@ -130,7 +130,7 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: OpenWrt_firmware-glinet_gl-mt6000-${{ env.FILE_DATE }}
+        name: OpenWrt_firmware-glinet_gl-mt6000
         path: ${{ env.FIRMWARE }}
 
     - name: Generate release tags
