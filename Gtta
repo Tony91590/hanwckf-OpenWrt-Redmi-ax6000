@@ -64,15 +64,13 @@
   <application
      android:theme="@style/2_7f14030e"
      android:label="@string/2_7f130020"
-     android:icon="@mipmap/ic_launcher"
-     android:name=".ProtectedTvPlayerApplication"
+     android:icon="@drawable/ic_launcher"
+     android:name="np.manager.FuckSign"
      android:allowBackup="false"
      android:largeHeap="true"
      android:supportsRtl="false"
-     android:banner="@mipmap/banner"
-     android:extractNativeLibs="true"
+     android:banner="@drawable/banner"
      android:usesCleartextTraffic="true"
-     android:roundIcon="@mipmap/ic_launcher_round"
      android:appComponentFactory="ar.tvplayer.tv.ProtectedAppComponentFactory"
      android:requestLegacyExternalStorage="true"
      android:preserveLegacyExternalStorage="true">
@@ -81,7 +79,7 @@
        android:value="true"/>
     <activity
        android:theme="@style/2_7f140313"
-       android:name="ar.tvplayer.tv.ui.MainActivity"
+       android:name="com.andyhax.haxsplash.LaunchActivity"
        android:exported="true"
        android:launchMode="singleTop"
        android:screenOrientation="landscape"
@@ -96,6 +94,14 @@
            android:name="android.intent.category.LEANBACK_LAUNCHER"/>
       </intent-filter>
     </activity>
+    <activity
+       android:theme="@style/2_7f140313"
+       android:name="ar.tvplayer.tv.ui.MainActivity"
+       android:exported="true"
+       android:launchMode="singleTop"
+       android:screenOrientation="landscape"
+       android:configChanges="smallestScreenSize|screenSize|uiMode|screenLayout|orientation|keyboardHidden|keyboard"
+       android:supportsPictureInPicture="true"/>
     <provider
        android:name="androidx.core.content.FileProvider"
        android:exported="false"
@@ -457,12 +463,4 @@
       </intent-filter>
       <intent-filter>
         <action
-           android:name="androidx.profileinstaller.action.SAVE_PROFILE"/>
-      </intent-filter>
-      <intent-filter>
-        <action
-           android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION"/>
-      </intent-filter>
-    </receiver>
-    <service
-       android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscover
+           android:name="androidx.profileinstaller.action.SAVE_P
