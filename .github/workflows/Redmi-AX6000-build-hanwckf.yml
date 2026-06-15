@@ -31,7 +31,7 @@ env:
 
 jobs:
   build:
-    runs-on: lastest
+    runs-on: ubuntu-latest
     
     steps:
     - name: Branche projet
